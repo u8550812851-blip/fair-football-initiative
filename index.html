@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fair Football Initiative</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+}
+
+header{
+padding:80px 20px;
+text-align:center;
+background:linear-gradient(135deg,#2563eb,#0ea5e9);
+}
+
+header h1{
+font-size:48px;
+margin-bottom:20px;
+}
+
+header p{
+font-size:20px;
+max-width:700px;
+margin:auto;
+line-height:1.6;
+}
+
+.button{
+display:inline-block;
+margin-top:35px;
+padding:16px 34px;
+background:white;
+color:#2563eb;
+text-decoration:none;
+font-weight:bold;
+border-radius:10px;
+}
+
+section{
+padding:60px 20px;
+max-width:1000px;
+margin:auto;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.card{
+background:#1e293b;
+padding:25px;
+border-radius:15px;
+}
+
+.card h2{
+margin-bottom:15px;
+}
+
+.counter{
+font-size:55px;
+font-weight:bold;
+color:#38bdf8;
+}
+
+form{
+display:flex;
+flex-direction:column;
+gap:15px;
+margin-top:30px;
+}
+
+input,textarea{
+padding:14px;
+border:none;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+padding:15px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:8px;
+font-size:18px;
+cursor:pointer;
+}
+
+#discussion{
+margin-top:40px;
+}
+
+.comment{
+background:#1e293b;
+padding:15px;
+margin-top:15px;
+border-radius:10px;
+}
+
+footer{
+text-align:center;
+padding:40px;
+color:#94a3b8;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Fair Football Initiative</h1>
+
+<p>
+
+Supporting transparency, accountability, and independent oversight in international football through respectful discussion and community engagement.
+
+</p>
+
+<a href="#petition" class="button">Support the Petition</a>
+
+</header>
+
+<section>
+
+<div class="cards">
+
+<div class="card">
+
+<h2>Transparency</h2>
+
+<p>Promoting openness and accountability in football governance.</p>
+
+</div>
+
+<div class="card">
+
+<h2>Community</h2>
+
+<p>Supporters can respectfully discuss ideas and share viewpoints.</p>
+
+</div>
+
+<div class="card">
+
+<h2>Fair Play</h2>
+
+<p>Advocating for integrity and confidence in the sport.</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="petition">
+
+<h1>Petition</h1>
+
+<br>
+
+<p>
+
+We, the undersigned, support greater transparency, accountability, and independent oversight in international football governance. We encourage appropriate independent review of credible concerns affecting public confidence in competitions and support reforms that strengthen trust in the sport.
+
+</p>
+
+<br><br>
+
+<div class="counter" id="count">0</div>
+
+<p>Supporters</p>
+
+<form id="form">
+
+<input id="name" placeholder="Your Name" required>
+
+<input id="country" placeholder="Country" required>
+
+<textarea id="message" placeholder="Optional comment"></textarea>
+
+<button>Sign Petition</button>
+
+</form>
+
+</section>
+
+<section id="discussion">
+
+<h1>Community Discussion</h1>
+
+<br>
+
+<p>Share respectful thoughts with other supporters.</p>
+
+<form id="discussionForm">
+
+<input id="username" placeholder="Your Name">
+
+<textarea id="post" placeholder="Write something..."></textarea>
+
+<button>Post</button>
+
+</form>
+
+<div id="posts"></div>
+
+</section>
+
+<footer>
+
+Fair Football Initiative © 2026
+
+</footer>
+
+<script>
+
+let signatures=[];
+
+const form=document.getElementById("form");
+
+form.onsubmit=function(e){
+
+e.preventDefault();
+
+signatures.push({
+name:name.value,
+country:country.value,
+message:message.value
+});
+
+document.getElementById("count").innerText=signatures.length;
+
+alert("Thank you for supporting!");
+
+form.reset();
+
+}
+
+const posts=[];
+
+discussionForm.onsubmit=function(e){
+
+e.preventDefault();
+
+posts.unshift({
+user:username.value,
+text:post.value
+});
+
+render();
+
+discussionForm.reset();
+
+}
+
+function render(){
+
+let html="";
+
+posts.forEach(p=>{
+
+html+=`
+<div class="comment">
+<b>${p.user}</b><br><br>
+${p.text}
+</div>
+`;
+
+});
+
+document.getElementById("posts").innerHTML=html;
+
+}
+
+</script>
+
+</body>
+</html>
